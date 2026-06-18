@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Login" %} — AgroSathi{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 480px;">
+  <div class="card shadow-sm border-0">
+    <div class="card-body p-4">
+      <div class="text-center mb-4">
+        <i class="fas fa-seedling fa-2x text-success"></i>
+        <h2 class="mt-2 fw-bold">{% trans "Farmer Login" %}</h2>
+        <p class="text-muted mb-0">{% trans "Access your crop history, disease reports and dashboard" %}</p>
+      </div>
+
+      {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+      {% endif %}
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="username" class="form-label">{% trans "Username" %}</label>
+          <input type="text" class="form-control" id="username" name="username" required autofocus>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">{% trans "Password" %}</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-success w-100 btn-lg">{% trans "Login" %}</button>
+      </form>
+
+      <p class="text-center mt-4 mb-0 text-muted">
+        {% trans "New farmer?" %}
+        <a href="{% url 'register' %}" class="text-success fw-semibold">{% trans "Create account" %}</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

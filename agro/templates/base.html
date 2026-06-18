@@ -1,0 +1,252 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{{ CURRENT_LANGUAGE_CODE|default:'en' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Crop Disease Detection — AI-powered smart farming for Indian farmers">
+  <title>{% block title %}AI Crop Disease Detection{% endblock %}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Sans+Kannada:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'css/pages.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/variables.css' %}">
+  <link rel="stylesheet" href="{% static 'css/i18n.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {% block extra_css %}{% endblock %}
+
+  <style>
+    body.agro-app {
+      font-family: 'Plus Jakarta Sans','Noto Sans Devanagari','Noto Sans Telugu','Noto Sans Kannada',system-ui,sans-serif;
+    }
+    main.agro-main { min-height: calc(100vh - 180px); }
+  </style>
+</head>
+
+<body class="agro-app" data-lang="{{ CURRENT_LANGUAGE_CODE|default:'en' }}">
+
+<!-- ════════════════════════ NAVBAR ════════════════════════ -->
+<nav class="navbar navbar-expand-xl navbar-dark sticky-top agro-navbar"
+     aria-label="{% trans 'Main navigation' %}">
+  <div class="container-fluid agro-nav-container">
+
+    <!-- Brand -->
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <div class="agro-brand-icon-wrap">
+        <i class="fas fa-seedling" aria-hidden="true"></i>
+      </div>
+      <div class="agro-brand-text">
+        <span class="agro-brand-name">AI Crop Disease Detection</span>
+        <span class="agro-brand-sub">&amp; Smart Farming</span>
+      </div>
+    </a>
+
+    <!-- Mobile toggler -->
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMenu"
+            aria-controls="navMenu" aria-expanded="false"
+            aria-label="{% trans 'Toggle navigation' %}">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navMenu">
+
+      <ul class="navbar-nav agro-nav-links mb-2 mb-xl-0 mx-xl-auto">
+        <li class="nav-item">
+          <a class="nav-link{% if NAV_ACTIVE == 'home' %} active{% endif %}" href="{% url 'home' %}">
+            <i class="fas fa-home" aria-hidden="true"></i><span>{% trans "Home" %}</span>
+          </a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link{% if NAV_ACTIVE == 'dashboard' %} active{% endif %}" href="{% url 'dashboard' %}">
+            <i class="fas fa-th-large" aria-hidden="true"></i><span>{% trans "Dashboard" %}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if NAV_ACTIVE == 'weather_page' %} active{% endif %}" href="{% url 'weather_page' %}">
+            <i class="fas fa-cloud-sun" aria-hidden="true"></i><span>{% trans "Weather" %}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if NAV_ACTIVE == 'market_page' %} active{% endif %}" href="{% url 'market_page' %}">
+            <i class="fas fa-store" aria-hidden="true"></i><span>{% trans "Mandi" %}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if NAV_ACTIVE == 'disease_detection_page' %} active{% endif %}" href="{% url 'disease_detection_page' %}">
+            <i class="fas fa-camera" aria-hidden="true"></i><span>{% trans "Disease" %}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if NAV_ACTIVE == 'soil_analysis_page' %} active{% endif %}" href="{% url 'soil_analysis_page' %}">
+            <i class="fas fa-vial" aria-hidden="true"></i><span>{% trans "Soil" %}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if NAV_ACTIVE == 'chatbot_page' %} active{% endif %}" href="{% url 'chatbot_page' %}">
+            <i class="fas fa-robot" aria-hidden="true"></i><span>{% trans "AI Chat" %}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if NAV_ACTIVE == 'smart_advisory' %} active{% endif %}" href="{% url 'smart_advisory' %}">
+            <i class="fas fa-seedling" aria-hidden="true"></i><span>{% trans "Advisory" %}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if NAV_ACTIVE == 'yield_prediction' %} active{% endif %}" href="{% url 'yield_prediction_page' %}">
+            <i class="fas fa-chart-line" aria-hidden="true"></i><span>{% trans "Yield" %}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if NAV_ACTIVE == 'schemes_page' %} active{% endif %}" href="{% url 'schemes_page' %}">
+            <i class="fas fa-landmark" aria-hidden="true"></i><span>{% trans "Schemes" %}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if NAV_ACTIVE == 'scheme_eligibility' %} active{% endif %}" href="{% url 'scheme_eligibility_page' %}">
+            <i class="fas fa-tasks" aria-hidden="true"></i><span>{% trans "Eligibility" %}</span>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+
+      <!-- Right actions -->
+      <div class="agro-nav-actions d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center gap-2 ms-xl-auto">
+
+        <!-- Language -->
+        <form action="{% url 'set_language' %}" method="post" class="language-form mb-0">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.get_full_path }}">
+          <label for="langSelect" class="visually-hidden">{% trans "Language" %}</label>
+          <select name="language" id="langSelect" class="form-select lang-select"
+                  onchange="this.form.submit()" aria-label="{% trans 'Language' %}">
+            <option value="en" {% if CURRENT_LANGUAGE_CODE == 'en' %}selected{% endif %}>🌐 English</option>
+            <option value="hi" {% if CURRENT_LANGUAGE_CODE == 'hi' %}selected{% endif %}>हिन्दी</option>
+            <option value="mr" {% if CURRENT_LANGUAGE_CODE == 'mr' %}selected{% endif %}>मराठी</option>
+            <option value="te" {% if CURRENT_LANGUAGE_CODE == 'te' %}selected{% endif %}>తెలుగు</option>
+            <option value="kn" {% if CURRENT_LANGUAGE_CODE == 'kn' %}selected{% endif %}>ಕನ್ನಡ</option>
+          </select>
+        </form>
+
+        {% if user.is_authenticated %}
+        <!-- Profile dropdown -->
+        <div class="dropdown">
+          <button class="btn agro-profile-btn dropdown-toggle" type="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="agro-avatar" aria-hidden="true">
+              {{ user.first_name|slice:":1"|upper|default:user.username|slice:":1"|upper }}{{ user.last_name|slice:":1"|upper }}
+            </span>
+            <span>{{ user.first_name|default:user.username|truncatechars:14 }}</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end agro-profile-menu">
+            <li><a class="dropdown-item" href="{% url 'dashboard' %}">
+              <i class="fas fa-th-large text-success"></i>{% trans "Dashboard" %}
+            </a></li>
+            <li><a class="dropdown-item" href="{% url 'profile' %}">
+              <i class="fas fa-user-edit text-success"></i>{% trans "Profile" %}
+            </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">
+              <i class="fas fa-sign-out-alt"></i>{% trans "Logout" %}
+            </a></li>
+          </ul>
+        </div>
+        {% else %}
+          <a href="{% url 'login' %}" class="btn btn-outline-light">
+            <i class="fas fa-sign-in-alt me-1"></i>{% trans "Login" %}
+          </a>
+          <a href="{% url 'register' %}" class="btn btn-light fw-bold">
+            <i class="fas fa-user-plus me-1"></i>{% trans "Register" %}
+          </a>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════ FLASH MESSAGES ════════════════════════ -->
+{% if messages %}
+<div class="container mt-3">
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{% trans 'Close' %}"></button>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<!-- ════════════════════════ MAIN ════════════════════════ -->
+<main class="agro-main py-4">
+  {% block content %}{% endblock %}
+</main>
+
+<!-- ════════════════════════ FOOTER ════════════════════════ -->
+<footer class="agro-footer bg-dark text-white py-5 mt-auto">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <h5 class="fw-bold text-success">
+          <i class="fas fa-seedling me-2"></i>AI Crop Disease Detection &amp; Smart Farming
+        </h5>
+        <p class="text-white-50 small mb-0">
+          {% trans "AI-powered agriculture platform for Indian farmers — weather, mandi, disease AI, soil, schemes." %}
+        </p>
+      </div>
+      <div class="col-md-4">
+        <h6 class="fw-semibold">{% trans "Quick Links" %}</h6>
+        <ul class="list-unstyled small">
+          <li><a href="{% url 'home' %}" class="text-white-50 text-decoration-none">{% trans "Home" %}</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'weather_page' %}" class="text-white-50 text-decoration-none">{% trans "Weather" %}</a></li>
+          <li><a href="{% url 'market_page' %}" class="text-white-50 text-decoration-none">{% trans "Mandi Prices" %}</a></li>
+          <li><a href="{% url 'chatbot_page' %}" class="text-white-50 text-decoration-none">{% trans "AI Chat" %}</a></li>
+          {% else %}
+          <li><a href="{% url 'register' %}" class="text-white-50 text-decoration-none">{% trans "Register" %}</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h6 class="fw-semibold">{% trans "Contact" %}</h6>
+        <p class="text-white-50 small mb-0">
+          support@agrosathi.in<br>© 2026 AI Crop Disease Detection &amp; Smart Farming
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════ SCRIPTS ════════════════════════ -->
+{{ js_translations|json_script:"agro-i18n-data" }}
+<script>
+  window.AGRO_I18N = JSON.parse(document.getElementById('agro-i18n-data').textContent);
+  window.AGRO_LANG = '{{ CURRENT_LANGUAGE_CODE|default:"en" }}';
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/api.js' %}"></script>
+<script src="{% static 'js/i18n.js' %}"></script>
+<script src="{% static 'js/navbar.js' %}"></script>
+
+<!-- Scroll darken effect -->
+<script>
+  (function(){
+    var nav = document.querySelector('.agro-navbar');
+    if (!nav) return;
+    window.addEventListener('scroll', function(){
+      nav.classList.toggle('agro-scrolled', window.scrollY > 20);
+    }, { passive: true });
+  })();
+</script>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

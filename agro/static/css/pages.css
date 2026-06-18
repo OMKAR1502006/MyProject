@@ -1,0 +1,27 @@
+/* Shared page layout — consistent cards, spacing, mobile */
+.agro-page-header {
+  margin-bottom: 1.5rem;
+}
+
+.agro-page-header h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800;
+  color: #14532d;
+}
+
+.agro-page-card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.agro-page-card .card-body {
+  padding: 1.5rem;
+}
+
+@media (max-width: 575.98px) {
+  .agro-page-card .card-body {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "AI Chat" %} — AgroSathi{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container chat-layout py-2">
+
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+    <div>
+      <h1 class="fw-bold mb-1">
+        <i class="fas fa-robot text-success me-2"></i>{% trans "Farming AI Assistant" %}
+      </h1>
+      <p class="text-muted mb-0 small">
+        {% trans "Ask about crops, disease, soil, weather, pests, and mandi prices" %}
+        {% if profile.primary_crop %} · {% trans "Your crop" %}: {{ profile.primary_crop }}{% endif %}
+      </p>
+    </div>
+    <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-arrow-left me-1"></i>{% trans "Dashboard" %}
+    </a>
+  </div>
+
+  <!-- Quick suggestions -->
+  <div class="d-flex flex-wrap gap-2 mb-3">
+    <button type="button" class="btn btn-sm btn-outline-success quick-chip" data-prompt="{% trans 'What fertilizer should I use for wheat?' %}">
+      🌾 {% trans "Fertilizer" %}
+    </button>
+    <button type="button" class="btn btn-sm btn-outline-success quick-chip" data-prompt="{% trans 'How to identify leaf blight in rice?' %}">
+      🍃 {% trans "Disease" %}
+    </button>
+    <button type="button" class="btn btn-sm btn-outline-success quick-chip" data-prompt="{% trans 'When should I irrigate my crops this week?' %}">
+      💧 {% trans "Irrigation" %}
+    </button>
+    <button type="button" class="btn btn-sm btn-outline-success quick-chip" data-prompt="{% trans 'Best time to sell onion in mandi?' %}">
+      📈 {% trans "Market" %}
+    </button>
+    <button type="button" class="btn btn-sm btn-outline-success quick-chip" data-prompt="{% trans 'Natural pest control for cotton?' %}">
+      🐛 {% trans "Pest control" %}
+    </button>
+    <button type="button" class="btn btn-sm btn-outline-success quick-chip" data-prompt="{% trans 'Soil pH is 5.2 — what should I do?' %}">
+      🧪 {% trans "Soil" %}
+    </button>
+  </div>
+
+  <div class="card border-0 shadow-sm">
+    <div id="chatWindow" class="chat-window">
+      <div class="chat-row bot-row welcome-msg mb-2">
+        <div class="chat-avatar bg-light border"><i class="fas fa-robot text-success"></i></div>
+        <div class="chat-bubble bot">
+          {% blocktrans with name=user.first_name|default:user.username %}
+          Namaste {{ name }}! I am AI Crop Disease Detection & Smart Farming AI. Ask me anything about farming in your language.
+          {% endblocktrans %}
+        </div>
+      </div>
+
+      {% for chat in chat_history %}
+      <div class="chat-row user-row">
+        <div class="chat-avatar bg-success text-white"><i class="fas fa-user"></i></div>
+        <div class="chat-bubble user">{{ chat.question }}</div>
+      </div>
+      <div class="chat-row bot-row">
+        <div class="chat-avatar bg-light border"><i class="fas fa-robot text-success"></i></div>
+        <div class="chat-bubble bot">{{ chat.answer|linebreaksbr }}</div>
+      </div>
+      {% endfor %}
+
+      <div id="typingIndicator" class="chat-row bot-row" style="display:none;">
+        <div class="chat-avatar bg-light border"><i class="fas fa-robot text-success"></i></div>
+        <div class="chat-bubble bot">
+          <div class="typing-indicator"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input-area">
+      <div id="imagePreview" class="mb-2"></div>
+      <form id="chatForm" class="d-flex flex-wrap gap-2 align-items-end">
+        {% csrf_token %}
+        <div class="flex-grow-1">
+          <label for="chatMessage" class="form-label visually-hidden">{% trans "Message" %}</label>
+          <textarea id="chatMessage" class="form-control" rows="2"
+                    placeholder="{% trans 'Type your farming question…' %}" maxlength="4000"></textarea>
+        </div>
+        <div class="d-flex gap-1 align-items-center flex-wrap" style="max-width: 140px;">
+          <label class="btn btn-outline-secondary btn-sm mb-0" title="{% trans 'Upload crop image' %}">
+            <i class="fas fa-image"></i>
+            <input type="file" id="chatImage" accept="image/*" class="d-none">
+          </label>
+          <button type="button" id="voiceBtn" class="btn btn-outline-secondary btn-sm" title="{% trans 'Voice input' %}">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <button type="button" id="voiceToggleBtn" class="btn btn-success btn-sm" title="{% trans 'Voice Assistant ON/OFF' %}" data-active="true">
+            <i class="fas fa-headset"></i>
+          </button>
+          <button type="button" id="muteBtn" class="btn btn-outline-secondary btn-sm" title="{% trans 'Mute' %}" data-muted="false">
+            <i class="fas fa-volume-mute"></i>
+          </button>
+          <button type="button" id="stopSpeakingBtn" class="btn btn-outline-secondary btn-sm" title="{% trans 'Stop speaking' %}">
+            <i class="fas fa-stop"></i>
+          </button>
+          <button type="button" id="replayBtn" class="btn btn-outline-secondary btn-sm" title="{% trans 'Replay response' %}">
+            <i class="fas fa-redo"></i>
+          </button>
+        </div>
+        <button type="submit" id="chatSendBtn" class="btn btn-success px-4">
+          <i class="fas fa-paper-plane me-1"></i>{% trans "Send" %}
+        </button>
+      </form>
+      <div class="d-flex flex-wrap gap-2 mt-2">
+        <button type="button" id="askAgainBtn" class="btn btn-sm btn-link text-success p-0">{% trans "Ask Again" %}</button>
+        <button type="button" id="speakLastBtn" class="btn btn-sm btn-link text-muted p-0">{% trans "Read aloud" %}</button>
+        <button type="button" id="clearChatBtn" class="btn btn-sm btn-link text-muted p-0 ms-auto">{% trans "Clear screen" %}</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="chatApiStatus" class="alert alert-info small py-2 d-none text-center mb-2" role="status"></div>
+  <p class="text-muted small text-center mt-2 mb-0">
+    {% trans "AI advice is for guidance only. Confirm with local agriculture experts before major decisions." %}
+  </p>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/chatbot.js' %}"></script>
+<script>
+  fetch('/api/status/', { credentials: 'same-origin' })
+    .then(r => r.json())
+    .then(st => {
+      const el = document.getElementById('chatApiStatus');
+      if (!el) return;
+      if (st.gemini || st.openai) {
+        el.className = 'alert alert-success small py-2 text-center mb-2';
+        el.textContent = 'AI online — ' + (st.gemini ? 'Gemini' : 'OpenAI') + ' connected';
+        el.classList.remove('d-none');
+      } else {
+        el.className = 'alert alert-warning small py-2 text-center mb-2';
+        el.innerHTML = 'Add <strong>GEMINI_API_KEY</strong> to <code>.env</code> and restart server. <a href="https://aistudio.google.com/apikey" target="_blank">Get free key</a>';
+        el.classList.remove('d-none');
+      }
+    });
+</script>
+{% endblock %}

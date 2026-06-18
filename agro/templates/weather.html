@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Weather Forecast" %} — AgroSathi{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/weather.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 1100px;" data-default-city="{{ profile.district|default:'Pune' }}">
+
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="fw-bold mb-1"><i class="fas fa-cloud-sun text-success me-2"></i>{% trans "Weather Forecast" %}</h1>
+      <p class="text-muted mb-0">{% trans "Live weather for your farm" %}</p>
+    </div>
+    <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-arrow-left me-1"></i>{% trans "Dashboard" %}
+    </a>
+  </div>
+
+  <!-- Search -->
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+      {% csrf_token %}
+      <form id="weatherForm" class="row g-3 align-items-end" onsubmit="return false;">
+        <div class="col-md-6">
+          <label for="cityInput" class="form-label">{% trans "City name" %}</label>
+          <input type="text" id="cityInput" class="form-control form-control-lg"
+                 placeholder="e.g. Pune, Bengaluru, Nagpur">
+        </div>
+        <div class="col-md-3">
+          <button type="button" id="getWeatherBtn" class="btn btn-success btn-lg w-100">
+            <i class="fas fa-search me-1"></i> {% trans "Get Weather" %}
+          </button>
+        </div>
+        <div class="col-md-3">
+          <button type="button" id="geoBtn" class="btn btn-outline-success btn-lg w-100">
+            <i class="fas fa-location-crosshairs me-1"></i> {% trans "My Location" %}
+          </button>
+        </div>
+      </form>
+      <p class="text-muted small mt-2 mb-0">
+        <i class="fas fa-info-circle me-1"></i>
+        Location is detected in your browser and sent securely to our server (API key never exposed).
+      </p>
+    </div>
+  </div>
+
+  <div id="weatherError" class="alert alert-danger d-none" role="alert"></div>
+  <div id="weatherApiHint" class="alert alert-info d-none" role="alert">
+    <strong>Tip:</strong> Weather works without any key via Open-Meteo.
+    For OpenWeatherMap, add <code>OPENWEATHER_API_KEY</code> to <code>.env</code> and restart the server.
+  </div>
+
+  <!-- Loading -->
+  <div id="weatherLoading" class="weather-loading active">
+    <div class="spinner-border text-success" style="width: 3rem; height: 3rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3 text-muted">{% trans "Fetching live weather data…" %}</p>
+  </div>
+
+  <!-- Results (shown only after successful load) -->
+  <div id="weatherResults" class="d-none">
+
+    <!-- Alerts -->
+    <div id="weatherAlerts" class="mb-4"></div>
+
+    <!-- Current weather hero -->
+    <div class="weather-hero-card mb-4">
+      <div class="row align-items-center g-3">
+        <div class="col-auto">
+          <img id="weatherIcon" src="" alt="Weather" class="weather-icon-lg" width="96" height="96">
+        </div>
+        <div class="col">
+          <p class="mb-0 opacity-75 small text-uppercase">Current weather</p>
+          <h2 class="fw-bold mb-0" id="cityName">—</h2>
+          <p class="mb-0 fs-5" id="currentCond">—</p>
+        </div>
+        <div class="col-auto text-end">
+          <div class="display-4 fw-bold" id="currentTemp">—</div>
+          <div class="small opacity-75">Feels like <span id="feelsLike">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="weather-stat-card card border-0 shadow-sm h-100 text-center p-3">
+          <i class="fas fa-droplet fa-lg text-primary mb-2"></i>
+          <div class="text-muted small">Humidity</div>
+          <div class="fw-bold fs-5" id="humidity">—</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="weather-stat-card card border-0 shadow-sm h-100 text-center p-3">
+          <i class="fas fa-cloud-rain fa-lg text-info mb-2"></i>
+          <div class="text-muted small">Rainfall (1h)</div>
+          <div class="fw-bold fs-5" id="rainfall">—</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="weather-stat-card card border-0 shadow-sm h-100 text-center p-3">
+          <i class="fas fa-wind fa-lg text-secondary mb-2"></i>
+          <div class="text-muted small">Wind speed</div>
+          <div class="fw-bold fs-5" id="windSpeed">—</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="weather-stat-card card border-0 shadow-sm h-100 text-center p-3">
+          <i class="fas fa-bell fa-lg text-warning mb-2"></i>
+          <div class="text-muted small">Active alerts</div>
+          <div class="fw-bold fs-5" id="alertCount">0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5-day forecast -->
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-header bg-white border-0 pt-3">
+        <h5 class="mb-0 text-success fw-semibold">
+          <i class="fas fa-calendar-week me-2"></i>5-Day Forecast
+        </h5>
+      </div>
+      <div class="card-body">
+        <div class="row g-3" id="forecastGrid"></div>
+      </div>
+    </div>
+
+    <!-- Farming suggestions -->
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-header bg-white border-0 pt-3">
+        <h5 class="mb-0 text-success fw-semibold">
+          <i class="fas fa-tractor me-2"></i>Farming Suggestions
+        </h5>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled mb-0" id="suggestionsList">
+          <li class="text-muted">Suggestions appear after weather loads.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p id="weatherSourceNote" class="text-muted small text-center mb-0"></p>
+    <p class="text-muted small text-center">
+      Cached 10 min · Farming alerts from forecast rules
+    </p>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/weather.js' %}"></script>
+{% endblock %}

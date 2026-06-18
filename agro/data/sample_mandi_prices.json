@@ -1,0 +1,136 @@
+{
+  "records": [
+    {
+      "state": "Maharashtra",
+      "district": "Pune",
+      "market": "Pune (APMC)",
+      "commodity": "Wheat",
+      "variety": "Local",
+      "arrival_date": "2025-05-20",
+      "min_price": 2450,
+      "max_price": 2680,
+      "modal_price": 2560
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Pune",
+      "market": "Pune (APMC)",
+      "commodity": "Onion",
+      "variety": "Red",
+      "arrival_date": "2025-05-20",
+      "min_price": 1200,
+      "max_price": 1850,
+      "modal_price": 1520
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Nashik",
+      "market": "Lasalgaon",
+      "commodity": "Onion",
+      "variety": "Red",
+      "arrival_date": "2025-05-20",
+      "min_price": 1350,
+      "max_price": 1920,
+      "modal_price": 1680
+    },
+    {
+      "state": "Karnataka",
+      "district": "Bengaluru Urban",
+      "market": "Yeshwanthpur",
+      "commodity": "Tomato",
+      "variety": "Hybrid",
+      "arrival_date": "2025-05-19",
+      "min_price": 800,
+      "max_price": 1450,
+      "modal_price": 1100
+    },
+    {
+      "state": "Karnataka",
+      "district": "Bengaluru Urban",
+      "market": "Yeshwanthpur",
+      "commodity": "Rice",
+      "variety": "Sona Masuri",
+      "arrival_date": "2025-05-19",
+      "min_price": 3200,
+      "max_price": 3450,
+      "modal_price": 3320
+    },
+    {
+      "state": "Gujarat",
+      "district": "Ahmedabad",
+      "market": "Ahmedabad (APMC)",
+      "commodity": "Cotton",
+      "variety": "Medium Staple",
+      "arrival_date": "2025-05-20",
+      "min_price": 6200,
+      "max_price": 6800,
+      "modal_price": 6550
+    },
+    {
+      "state": "Gujarat",
+      "district": "Surat",
+      "market": "Surat (APMC)",
+      "commodity": "Soybean",
+      "variety": "Yellow",
+      "arrival_date": "2025-05-20",
+      "min_price": 4100,
+      "max_price": 4350,
+      "modal_price": 4220
+    },
+    {
+      "state": "Punjab",
+      "district": "Ludhiana",
+      "market": "Ludhiana",
+      "commodity": "Wheat",
+      "variety": "FAQ",
+      "arrival_date": "2025-05-20",
+      "min_price": 2520,
+      "max_price": 2750,
+      "modal_price": 2640
+    },
+    {
+      "state": "Uttar Pradesh",
+      "district": "Lucknow",
+      "market": "Lucknow",
+      "commodity": "Potato",
+      "variety": "Jyoti",
+      "arrival_date": "2025-05-19",
+      "min_price": 900,
+      "max_price": 1280,
+      "modal_price": 1050
+    },
+    {
+      "state": "Andhra Pradesh",
+      "district": "Guntur",
+      "market": "Guntur",
+      "commodity": "Chilli",
+      "variety": "Teja",
+      "arrival_date": "2025-05-20",
+      "min_price": 8500,
+      "max_price": 10200,
+      "modal_price": 9400
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Indore",
+      "market": "Indore (APMC)",
+      "commodity": "Soybean",
+      "variety": "Yellow",
+      "arrival_date": "2025-05-20",
+      "min_price": 4050,
+      "max_price": 4280,
+      "modal_price": 4160
+    },
+    {
+      "state": "Rajasthan",
+      "district": "Jaipur",
+      "market": "Jaipur (APMC)",
+      "commodity": "Mustard",
+      "variety": "Bold",
+      "arrival_date": "2025-05-19",
+      "min_price": 5200,
+      "max_price": 5480,
+      "modal_price": 5350
+    }
+  ]
+}

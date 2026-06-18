@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Server Error" %}{% endblock %}
+{% block content %}
+<div class="container text-center py-5">
+  <h1 class="display-1 text-danger">500</h1>
+  <p class="lead">{% trans "Something went wrong. Please try again later." %}</p>
+  <a href="{% url 'home' %}" class="btn btn-success">{% trans "Back to Home" %}</a>
+</div>
+{% endblock %}

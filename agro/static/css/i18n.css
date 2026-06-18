@@ -1,0 +1,40 @@
+/* Multilingual font stack — Devanagari (Hindi, Marathi) + Telugu */
+.agro-app,
+.agro-app input,
+.agro-app select,
+.agro-app button,
+.agro-app .form-control,
+.agro-app .table {
+  font-family: 'Noto Sans', 'Noto Sans Devanagari', 'Noto Sans Telugu', 'Inter', system-ui, sans-serif;
+}
+
+html[lang="hi"] .agro-app,
+html[lang="mr"] .agro-app {
+  font-family: 'Noto Sans Devanagari', 'Noto Sans', sans-serif;
+}
+
+html[lang="te"] .agro-app {
+  font-family: 'Noto Sans Telugu', 'Noto Sans', sans-serif;
+}
+
+/* Language select — navbar overrides in navbar.css */
+.lang-select {
+  min-width: 7rem;
+  max-width: 9rem;
+}
+
+.lang-select option {
+  color: #212529;
+  background: #fff;
+}
+
+.language-form {
+  margin-bottom: 0;
+}
+
+/* Voice-friendly: larger touch targets on mobile */
+@media (max-width: 768px) {
+  .lang-select {
+    min-height: 2.5rem;
+  }
+}

@@ -1,0 +1,21 @@
+# AgroSathi — core dependencies (one-click install via start.bat / start.sh)
+Django>=5.2,<6.0
+python-dotenv>=1.0.0
+polib>=1.2.0
+Pillow>=10.0.0
+requests>=2.31.0
+
+# Data & analytics (soil/advisory helpers, charts)
+numpy>=1.26.0
+pandas>=2.0.0
+scikit-learn>=1.4.0
+matplotlib>=3.8.0
+
+# AI SDKs (chat also works via REST without these)
+google-generativeai>=0.8.0
+
+# SMS alerts (optional feature)
+twilio>=9.0.0
+
+# Heavy ML — installed separately by start script from requirements-ml.txt
+# tensorflow, opencv-python

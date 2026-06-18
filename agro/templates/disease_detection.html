@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Disease Detection" %} — AgroSathi{% endblock %}
+
+{% block extra_css %}
+<style>
+  .upload-zone {
+    border: 2px dashed #94a3b8;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background: #f8fafc;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+    z-index: 1;
+  }
+  #selectPhotoBtn {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+  }
+  .upload-zone:hover, .upload-zone.dragover {
+    border-color: #16a34a;
+    background: #f0fdf4;
+  }
+  .preview-img { max-width: 100%; max-height: 280px; border-radius: 8px; object-fit: contain; }
+  .disease-card { border-left: 4px solid #16a34a; }
+  .confidence-bar { height: 8px; border-radius: 4px; background: #e5e7eb; overflow: hidden; }
+  .confidence-bar span { display: block; height: 100%; background: #16a34a; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 900px;">
+  {% csrf_token %}
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="fw-bold text-success mb-0"><i class="fas fa-camera me-2"></i>{% trans "Disease Detection" %}</h1>
+    <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary btn-sm">{% trans "Dashboard" %}</a>
+  </div>
+
+  <div class="card shadow-sm border-0 mb-3">
+    <div class="card-body">
+      <p class="text-muted mb-3">{% trans "Upload a clear photo of affected leaves. AI analysis uses Gemini Vision or an optional TensorFlow model." %}</p>
+
+      <div id="dropZone" class="upload-zone mb-3" role="button" tabindex="0"
+           aria-label="{% trans 'Upload plant photo' %}">
+        <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-2"></i>
+        <p class="mb-2 fw-semibold">{% trans "Upload a leaf photo" %}</p>
+        <label for="fileInput" id="selectPhotoBtn" class="btn btn-success btn-lg mb-0" role="button">
+          <i class="fas fa-camera me-2"></i>{% trans "Select Photo" %}
+        </label>
+        <p class="small text-muted mt-2 mb-0">{% trans "or drag & drop here" %} · PNG, JPG — max 8MB</p>
+        <input type="file" id="fileInput" name="image" accept="image/*" capture="environment"
+               class="d-none" aria-label="{% trans 'Select plant photo' %}">
+      </div>
+
+      <div id="previewWrap" class="text-center mb-3 d-none">
+        <img id="thumb" class="preview-img border" alt="{% trans 'Preview' %}">
+      </div>
+
+      <div class="d-flex flex-wrap gap-2 align-items-center">
+        <button type="button" id="analyzeBtn" class="btn btn-success" disabled>
+          <i class="fas fa-microscope me-1"></i>{% trans "Analyze Image" %}
+        </button>
+        <button type="button" id="resetBtn" class="btn btn-outline-secondary">{% trans "Reset" %}</button>
+        <span id="status" class="ms-auto text-muted small"></span>
+      </div>
+    </div>
+  </div>
+
+  <div id="results" class="d-none"></div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/disease.js' %}"></script>
+{% endblock %}

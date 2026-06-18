@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Smart Crop Advisory" %} — AgroSathi{% endblock %}
+
+{% block extra_css %}
+<style>
+  .result-panel { margin-top: 1rem; padding: 1.25rem; border-radius: 12px; background: #ecfdf5; border-left: 5px solid #16a34a; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 920px;">
+  <div class="agro-page-header d-flex flex-wrap justify-content-between align-items-center">
+    <h1 class="mb-0"><i class="fas fa-seedling text-success me-2"></i>{% trans "Smart Crop Advisory" %}</h1>
+    <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary btn-sm">{% trans "Dashboard" %}</a>
+  </div>
+
+  <div class="card agro-page-card">
+    <div class="card-body">
+      {% csrf_token %}
+      <p class="text-muted">{% trans "Enter soil and climate details for crop recommendations." %}</p>
+      <form id="crop-form" class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label" for="soil">{% trans "Soil Type" %}</label>
+          <select id="soil" class="form-select" required>
+            <option value="">-- {% trans "Select" %} --</option>
+            <option value="loamy">{% trans "Loamy" %}</option>
+            <option value="clayey">{% trans "Clayey" %}</option>
+            <option value="sandy">{% trans "Sandy" %}</option>
+            <option value="black">{% trans "Black" %}</option>
+            <option value="red">{% trans "Red" %}</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label" for="season">{% trans "Season" %}</label>
+          <select id="season" class="form-select" required>
+            <option value="">-- {% trans "Select" %} --</option>
+            <option value="monsoon">{% trans "Monsoon" %}</option>
+            <option value="summer">{% trans "Summer" %}</option>
+            <option value="winter">{% trans "Winter" %}</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label" for="temp">{% trans "Temperature" %} (°C)</label>
+          <input id="temp" type="number" step="0.1" class="form-control" value="27" required>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label" for="ph">pH</label>
+          <input id="ph" type="number" step="0.1" class="form-control" value="6.5" required>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label" for="rainfall">{% trans "Rainfall" %} (mm)</label>
+          <input id="rainfall" type="number" class="form-control" value="800" required>
+        </div>
+        <div class="col-12 d-flex flex-wrap gap-2 align-items-center">
+          <button type="submit" id="submit-btn" class="btn btn-success btn-lg">
+            <i class="fas fa-magic me-1"></i>{% trans "Get Recommendations" %}
+          </button>
+          <button type="button" id="reset-btn" class="btn btn-outline-secondary">{% trans "Reset" %}</button>
+          <span id="status" class="ms-auto small text-muted"></span>
+        </div>
+      </form>
+      <div id="result" class="d-none"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/advisory.js' %}"></script>
+{% endblock %}

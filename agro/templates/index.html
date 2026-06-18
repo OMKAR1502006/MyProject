@@ -1,0 +1,341 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}AgroSathi — {% trans "AI-Powered Smart Farming" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- 1. Hero -->
+<section class="home-hero text-center text-lg-start py-5">
+  <div class="container py-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <span class="hero-badge"><i class="fas fa-robot me-1"></i> {% trans "AI-Powered Agriculture Platform" %}</span>
+        <h1 class="hero-title mb-3">{% trans "Grow Smarter with AI Crop Disease Detection & Smart Farming" %}</h1>
+        <p class="hero-sub mb-4">
+          {% trans "Weather forecasts, live mandi prices, disease detection, soil analysis, crop advisory, government schemes, and multilingual AI chat — built for Indian farmers." %}
+        </p>
+        <div class="hero-cta d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
+          {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="btn btn-light btn-lg text-success">{% trans "Open Dashboard" %}</a>
+          {% else %}
+            <a href="{% url 'register' %}" class="btn btn-light btn-lg text-success">{% trans "Register Free" %}</a>
+            <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg">{% trans "Login" %}</a>
+          {% endif %}
+          <a href="#features" class="btn btn-outline-light btn-lg">{% trans "Explore Features" %}</a>
+        </div>
+        <div class="hero-stats justify-content-center justify-content-lg-start">
+          <div class="hero-stat"><strong data-counter="12">0</strong><span>{% trans "Smart Modules" %}</span></div>
+          <div class="hero-stat"><strong data-counter="4">0</strong><span>{% trans "Languages" %}</span></div>
+          <div class="hero-stat"><strong>24/7</strong><span>{% trans "AI Assistant" %}</span></div>
+        </div>
+      </div>
+      <div class="col-lg-5 hero-image-wrap d-none d-lg-block">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80"
+             alt="{% trans 'Indian farmer in field' %}" class="img-fluid border border-3 border-white">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Feature cards -->
+<section id="features" class="py-5 bg-white">
+  <div class="container">
+    <h2 class="section-title text-center fade-in">{% trans "Everything You Need on One Platform" %}</h2>
+    <p class="section-sub text-center fade-in">{% trans "From soil to mandi — data-driven decisions for better yields and profits." %}</p>
+    <div class="row g-4">
+      <div class="col-md-4 fade-in">
+        <div class="card feature-card h-100 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon bg-primary-subtle text-primary"><i class="fas fa-cloud-sun"></i></div>
+            <h5>{% trans "Live Weather" %}</h5>
+            <p class="text-muted small">{% trans "5-day forecast, humidity, rainfall, wind — Open-Meteo or OpenWeather." %}</p>
+            {% if user.is_authenticated %}<a href="{% url 'weather_page' %}" class="btn btn-sm btn-success mt-2">{% trans "Open" %}</a>{% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="card feature-card h-100 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon bg-warning-subtle text-warning"><i class="fas fa-store"></i></div>
+            <h5>{% trans "Mandi Prices" %}</h5>
+            <p class="text-muted small">{% trans "Government Agmarknet data via data.gov.in — search by crop, state, district." %}</p>
+            {% if user.is_authenticated %}<a href="{% url 'market_page' %}" class="btn btn-sm btn-success mt-2">{% trans "Open" %}</a>{% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="card feature-card h-100 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon bg-danger-subtle text-danger"><i class="fas fa-camera"></i></div>
+            <h5>{% trans "Disease Detection" %}</h5>
+            <p class="text-muted small">{% trans "AI leaf analysis with treatment plans and confidence scores." %}</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'disease_detection_page' %}" class="btn btn-sm btn-success mt-2">{% trans "Open" %}</a>
+            {% else %}
+            <a href="{% url 'login' %}?next=/disease/" class="btn btn-sm btn-outline-success mt-2">{% trans "Login" %}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="card feature-card h-100 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon bg-secondary-subtle text-secondary"><i class="fas fa-vial"></i></div>
+            <h5>{% trans "Soil Analysis" %}</h5>
+            <p class="text-muted small">{% trans "NPK, pH, fertility class, and fertilizer recommendations." %}</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'soil_analysis_page' %}" class="btn btn-sm btn-success mt-2">{% trans "Open" %}</a>
+            {% else %}
+            <a href="{% url 'login' %}?next=/soil/" class="btn btn-sm btn-outline-success mt-2">{% trans "Login" %}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="card feature-card h-100 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon bg-info-subtle text-info"><i class="fas fa-robot"></i></div>
+            <h5>{% trans "AI Chatbot" %}</h5>
+            <p class="text-muted small">{% trans "Gemini-powered advice in English, Hindi, Marathi, Telugu, Kannada." %}</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'chatbot_page' %}" class="btn btn-sm btn-success mt-2">{% trans "Open" %}</a>
+            {% else %}
+            <a href="{% url 'login' %}?next=/chatbot/" class="btn btn-sm btn-outline-success mt-2">{% trans "Login" %}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="card feature-card h-100 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon bg-success-subtle text-success"><i class="fas fa-landmark"></i></div>
+            <h5>{% trans "Govt Schemes" %}</h5>
+            <p class="text-muted small">{% trans "PM-KISAN, KCC, crop insurance, subsidies, and more." %}</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'schemes_page' %}" class="btn btn-sm btn-success mt-2">{% trans "Open" %}</a>
+            {% else %}
+            <a href="{% url 'login' %}?next=/schemes/" class="btn btn-sm btn-outline-success mt-2">{% trans "Login" %}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="card feature-card h-100 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon bg-success-subtle text-success"><i class="fas fa-chart-line"></i></div>
+            <h5>{% trans "Yield Forecast" %}</h5>
+            <p class="text-muted small">{% trans "Estimate yield and profits with Cost of Cultivation breakdowns." %}</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'yield_prediction_page' %}" class="btn btn-sm btn-success mt-2">{% trans "Open" %}</a>
+            {% else %}
+            <a href="{% url 'login' %}?next=/yield/" class="btn btn-sm btn-outline-success mt-2">{% trans "Login" %}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="card feature-card h-100 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon bg-primary-subtle text-primary"><i class="fas fa-tasks"></i></div>
+            <h5>{% trans "Eligibility Checker" %}</h5>
+            <p class="text-muted small">{% trans "Check your eligibility score for central and state schemes." %}</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'scheme_eligibility_page' %}" class="btn btn-sm btn-success mt-2">{% trans "Open" %}</a>
+            {% else %}
+            <a href="{% url 'login' %}?next=/schemes/eligibility/" class="btn btn-sm btn-outline-success mt-2">{% trans "Login" %}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. AI section -->
+<section class="ai-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 fade-in">
+        <h2 class="section-title">{% trans "AI-Powered Farming Intelligence" %}</h2>
+        <p class="text-muted mb-4">
+          {% trans "Ask about diseases, fertilizers, irrigation, pests, and market timing. Our assistant uses Google Gemini with your farm profile context." %}
+        </p>
+        <ul class="list-unstyled">
+          <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>{% trans "Multilingual responses" %}</li>
+          <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>{% trans "Chat history saved to your account" %}</li>
+          <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>{% trans "Image upload for crop diagnosis" %}</li>
+          <li><i class="fas fa-check-circle text-success me-2"></i>{% trans "Voice input support" %}</li>
+        </ul>
+        {% if user.is_authenticated %}
+          <a href="{% url 'chatbot_page' %}" class="btn btn-success btn-lg mt-2">{% trans "Chat with AgroSathi" %}</a>
+        {% else %}
+          <a href="{% url 'register' %}" class="btn btn-success btn-lg mt-2">{% trans "Start Free" %}</a>
+        {% endif %}
+      </div>
+      <div class="col-lg-6 fade-in">
+        <div class="ai-visual shadow">
+          <div class="d-flex align-items-center mb-3">
+            <i class="fas fa-robot fa-2x me-3"></i>
+            <div>
+              <strong>{% trans "AgroSathi Assistant" %}</strong>
+              <div class="small opacity-75">{% trans "Powered by Gemini AI" %}</div>
+            </div>
+          </div>
+          <div class="bg-white bg-opacity-10 rounded-3 p-3 mb-2">
+            <small class="opacity-75">{% trans "Farmer" %}</small>
+            <p class="mb-0">{% trans "What fertilizer should I use for wheat in loamy soil?" %}</p>
+          </div>
+          <div class="bg-white rounded-3 p-3 text-dark">
+            <small class="text-muted">{% trans "AgroSathi" %}</small>
+            <p class="mb-0 small">{% trans "For wheat on loamy soil: soil test first, apply balanced NPK at sowing, split nitrogen at tillering. Use Soil Analysis for exact doses." %}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4–6. Live previews -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center fade-in">{% trans "Live Data Previews" %}</h2>
+    <p class="section-sub text-center fade-in">{% trans "Real weather and mandi rates — connect API keys in .env for full live data." %}</p>
+    <div class="row g-4">
+      <div class="col-md-4 fade-in">
+        <div class="preview-widget shadow-sm">
+          <h6 class="text-primary fw-bold"><i class="fas fa-cloud-sun me-1"></i>{% trans "Weather" %}</h6>
+          <div id="homeWeatherPreview" class="loading-pulse py-3">{% trans "Loading weather…" %}</div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="preview-widget shadow-sm">
+          <h6 class="text-warning fw-bold"><i class="fas fa-store me-1"></i>{% trans "Mandi Prices" %}</h6>
+          <div id="homeMarketPreview" class="loading-pulse py-3">{% trans "Loading prices…" %}</div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="preview-widget shadow-sm">
+          <h6 class="text-danger fw-bold"><i class="fas fa-microscope me-1"></i>{% trans "Disease Detection" %}</h6>
+          <div id="homeDiseasePreview" class="loading-pulse py-3">{% trans "Loading…" %}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Statistics -->
+<section class="counter-section">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3 fade-in">
+        <div class="counter-item"><strong data-counter="50000" data-suffix="+">0</strong><span>{% trans "Farmers Supported" %}</span></div>
+      </div>
+      <div class="col-6 col-md-3 fade-in">
+        <div class="counter-item"><strong data-counter="28">0</strong><span>{% trans "Indian States" %}</span></div>
+      </div>
+      <div class="col-6 col-md-3 fade-in">
+        <div class="counter-item"><strong data-counter="150" data-suffix="+">0</strong><span>{% trans "Crops Tracked" %}</span></div>
+      </div>
+      <div class="col-6 col-md-3 fade-in">
+        <div class="counter-item"><strong data-counter="99" data-suffix="%">0</strong><span>{% trans "Uptime Target" %}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Government schemes -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center fade-in">{% trans "Government Schemes" %}</h2>
+    <p class="section-sub text-center fade-in">{% trans "Discover subsidies and programs you may be eligible for." %}</p>
+    <div class="row g-3">
+      {% for scheme in featured_schemes %}
+      <div class="col-md-6 col-lg-4 fade-in">
+        <div class="card scheme-card h-100 shadow-sm">
+          <div class="card-body">
+            <span class="badge bg-success-subtle text-success mb-2">{{ scheme.category|default:"Scheme" }}</span>
+            <h6 class="fw-bold">{{ scheme.name }}</h6>
+            <p class="small text-muted mb-0">{{ scheme.description|truncatewords:25 }}</p>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-md-4 fade-in">
+        <div class="card scheme-card shadow-sm"><div class="card-body"><h6>PM-KISAN</h6><p class="small text-muted mb-0">{% trans "Direct income support for eligible farmer families." %}</p></div></div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="card scheme-card shadow-sm"><div class="card-body"><h6>Kisan Credit Card</h6><p class="small text-muted mb-0">{% trans "Affordable credit for crop production and farm needs." %}</p></div></div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="card scheme-card shadow-sm"><div class="card-body"><h6>{% trans "Crop Insurance" %}</h6><p class="small text-muted mb-0">{% trans "PMFBY protects against crop loss from natural calamities." %}</p></div></div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-4 fade-in">
+      {% if user.is_authenticated %}
+        <a href="{% url 'schemes_page' %}" class="btn btn-success">{% trans "Browse All Schemes" %}</a>
+      {% else %}
+        <a href="{% url 'register' %}" class="btn btn-success">{% trans "Register to View Schemes" %}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- 9. Testimonials -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center fade-in">{% trans "What Farmers Say" %}</h2>
+    <div class="row g-4 mt-2">
+      <div class="col-md-4 fade-in">
+        <div class="testimonial-card">
+          <div class="d-flex gap-3 mb-3">
+            <div class="testimonial-avatar">R</div>
+            <div><strong>Ramesh Patil</strong><div class="small text-muted">{% trans "Wheat farmer, Pune" %}</div></div>
+          </div>
+          <p class="small mb-0">{% trans "Mandi prices helped me choose the best market to sell. Weather alerts saved my crop before heavy rain." %}</p>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="testimonial-card">
+          <div class="d-flex gap-3 mb-3">
+            <div class="testimonial-avatar">S</div>
+            <div><strong>Sunita Devi</strong><div class="small text-muted">{% trans "Vegetable grower, Bihar" %}</div></div>
+          </div>
+          <p class="small mb-0">{% trans "Disease detection identified leaf blight early. AI chat answered my fertilizer questions in Hindi." %}</p>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="testimonial-card">
+          <div class="d-flex gap-3 mb-3">
+            <div class="testimonial-avatar">V</div>
+            <div><strong>Venkatesh Rao</strong><div class="small text-muted">{% trans "Rice farmer, Telangana" %}</div></div>
+          </div>
+          <p class="small mb-0">{% trans "Soil analysis and crop advisory on one dashboard — very useful for planning the season." %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Footer CTA -->
+<section class="home-footer-cta">
+  <div class="container text-center fade-in">
+    <h2 class="section-title">{% trans "Ready to Transform Your Farm?" %}</h2>
+    <p class="text-muted mb-4">{% trans "Join AgroSathi today — free registration, works on mobile and desktop." %}</p>
+    {% if user.is_authenticated %}
+      <a href="{% url 'dashboard' %}" class="btn btn-success btn-lg">{% trans "Go to Dashboard" %}</a>
+    {% else %}
+      <a href="{% url 'register' %}" class="btn btn-success btn-lg me-2">{% trans "Create Account" %}</a>
+      <a href="{% url 'login' %}" class="btn btn-outline-success btn-lg">{% trans "Login" %}</a>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}

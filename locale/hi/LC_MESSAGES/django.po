@@ -1,0 +1,340 @@
+msgid ""
+msgstr ""
+"Language: hi\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Home"
+msgstr "होम"
+
+msgid "Dashboard"
+msgstr "डैशबोर्ड"
+
+msgid "Weather"
+msgstr "मौसम"
+
+msgid "Mandi"
+msgstr "मंडी"
+
+msgid "Mandi Prices"
+msgstr "मंडी भाव"
+
+msgid "Market Prices"
+msgstr "मंडी भाव"
+
+msgid "Disease"
+msgstr "रोग"
+
+msgid "Disease Detection"
+msgstr "रोग पहचान"
+
+msgid "Soil"
+msgstr "मिट्टी"
+
+msgid "Soil Analysis"
+msgstr "मिट्टी विश्लेषण"
+
+msgid "AI Chat"
+msgstr "AI चैट"
+
+msgid "Chatbot"
+msgstr "चैटबॉट"
+
+msgid "Advisory"
+msgstr "सलाह"
+
+msgid "Schemes"
+msgstr "योजनाएँ"
+
+msgid "Profile"
+msgstr "प्रोफ़ाइल"
+
+msgid "Login"
+msgstr "लॉगिन"
+
+msgid "Logout"
+msgstr "लॉगआउट"
+
+msgid "Register"
+msgstr "पंजीकरण"
+
+msgid "Language"
+msgstr "भाषा"
+
+msgid "Kannada"
+msgstr "कन्नड़"
+
+msgid "English"
+msgstr "अंग्रेज़ी"
+
+msgid "Hindi"
+msgstr "हिन्दी"
+
+msgid "Marathi"
+msgstr "मराठी"
+
+msgid "Telugu"
+msgstr "तेलुगु"
+
+msgid "Farmer Dashboard"
+msgstr "किसान डैशबोर्ड"
+
+msgid "Edit Profile"
+msgstr "प्रोफ़ाइल संपादित करें"
+
+msgid "Integration status"
+msgstr "सेवा स्थिति"
+
+msgid "Checking…"
+msgstr "जाँच हो रही है…"
+
+msgid "Crop Advisories"
+msgstr "फसल सलाह"
+
+msgid "Disease Reports"
+msgstr "रोग रिपोर्ट"
+
+msgid "Details"
+msgstr "विवरण"
+
+msgid "Search"
+msgstr "खोजें"
+
+msgid "Activity Overview"
+msgstr "गतिविधि सारांश"
+
+msgid "Recent Crop History"
+msgstr "हाल की फसल जानकारी"
+
+msgid "Recent Disease Reports"
+msgstr "हाल की रोग रिपोर्ट"
+
+msgid "No records yet"
+msgstr "अभी कोई रिकॉर्ड नहीं"
+
+msgid "No reports yet"
+msgstr "अभी कोई रिपोर्ट नहीं"
+
+msgid "Crop"
+msgstr "फसल"
+
+msgid "Date"
+msgstr "तारीख"
+
+msgid "Prob."
+msgstr "संभावना"
+
+msgid "Confidence"
+msgstr "विश्वास"
+
+msgid "Weather Forecast"
+msgstr "मौसम पूर्वानुमान"
+
+msgid "Live weather for your farm"
+msgstr "आपके खेत के लिए लाइव मौसम"
+
+msgid "City name"
+msgstr "शहर का नाम"
+
+msgid "Get Weather"
+msgstr "मौसम देखें"
+
+msgid "My Location"
+msgstr "मेरा स्थान"
+
+msgid "Fetching live weather data…"
+msgstr "लाइव मौसम डेटा लोड हो रहा है…"
+
+msgid "Live Mandi Prices"
+msgstr "लाइव मंडी भाव"
+
+msgid "Search by crop, state and mandi"
+msgstr "फसल, राज्य और मंडी से खोजें"
+
+msgid "Farming AI Assistant"
+msgstr "कृषि AI सहायक"
+
+msgid "Send"
+msgstr "भेजें"
+
+msgid "Ask Again"
+msgstr "फिर पूछें"
+
+msgid "Read aloud"
+msgstr "बोलकर सुनें"
+
+msgid "Clear screen"
+msgstr "स्क्रीन साफ़ करें"
+
+msgid "Smart Crop Advisory"
+msgstr "स्मार्ट फसल सलाह"
+
+msgid "Get Recommendations"
+msgstr "सिफारिशें पाएँ"
+
+msgid "Analyze Soil"
+msgstr "मिट्टी विश्लेषण करें"
+
+msgid "Analyze Image"
+msgstr "छवि विश्लेषण"
+
+msgid "Select Photo"
+msgstr "फोटो चुनें"
+
+msgid "Reset"
+msgstr "रीसेट"
+
+msgid "Government Schemes"
+msgstr "सरकारी योजनाएँ"
+
+msgid "Filter"
+msgstr "फ़िल्टर"
+
+msgid "Loading…"
+msgstr "लोड हो रहा है…"
+
+msgid "All categories"
+msgstr "सभी श्रेणियाँ"
+
+msgid "Go to Dashboard"
+msgstr "डैशबोर्ड पर जाएँ"
+
+msgid "Register as Farmer"
+msgstr "किसान के रूप में पंजीकरण"
+
+msgid "Register Free"
+msgstr "मुफ़्त पंजीकरण"
+
+msgid "Open Dashboard"
+msgstr "डैशबोर्ड खोलें"
+
+msgid "Platform Features"
+msgstr "प्लेटफ़ॉर्म सुविधाएँ"
+
+msgid "Main navigation"
+msgstr "मुख्य मेनू"
+
+msgid "Toggle navigation"
+msgstr "मेनू"
+
+msgid "Close"
+msgstr "बंद"
+
+msgid "Quick Links"
+msgstr "त्वरित लिंक"
+
+msgid "Contact"
+msgstr "संपर्क"
+
+msgid "AI-Powered Agriculture for Indian Farmers"
+msgstr "भारतीय किसानों के लिए AI कृषि"
+
+msgid "Grow Smarter with AgroSathi"
+msgstr "AgroSathi के साथ स्मार्ट खेती"
+
+msgid "Open"
+msgstr "खोलें"
+
+msgid "Select"
+msgstr "चुनें"
+
+msgid "Soil Type"
+msgstr "मिट्टी का प्रकार"
+
+msgid "Season"
+msgstr "मौसम/ऋतु"
+
+msgid "Temperature"
+msgstr "तापमान"
+
+msgid "Rainfall"
+msgstr "वर्षा"
+
+msgid "Moisture"
+msgstr "नमी"
+
+msgid "Area"
+msgstr "क्षेत्र"
+
+msgid "Units"
+msgstr "इकाई"
+
+msgid "Results"
+msgstr "परिणाम"
+
+msgid "Fertility"
+msgstr "उर्वरता"
+
+msgid "Enter N, P, K, pH and optional moisture for fertility analysis."
+msgstr "उर्वरता के लिए N, P, K, pH दर्ज करें।"
+
+msgid "Enter soil and climate details for crop recommendations."
+msgstr "फसल सलाह के लिए मिट्टी और जलवायु विवरण दर्ज करें।"
+
+msgid "National and state farmer schemes with eligibility and application steps."
+msgstr "पात्रता और आवेदन के साथ सरकारी योजनाएँ।"
+
+msgid "Live mandi data requires API key."
+msgstr "लाइव मंडी डेटा के लिए API कुंजी चाहिए।"
+
+msgid "Welcome, %(name)s"
+msgstr "स्वागत, %(name)s"
+
+msgid "Nitrogen"
+msgstr "नाइट्रोजन"
+
+msgid "Phosphorus"
+msgstr "फॉस्फोरस"
+
+msgid "Potassium"
+msgstr "पोटैशियम"
+
+msgid "Probabilities"
+msgstr "संभावना"
+
+msgid "Fertilizer suggestions"
+msgstr "उर्वरक सुझाव"
+
+msgid "Loamy"
+msgstr "दोमट"
+
+msgid "Clayey"
+msgstr "चिकनी"
+
+msgid "Sandy"
+msgstr "रेतीली"
+
+msgid "Black"
+msgstr "काली"
+
+msgid "Red"
+msgstr "लाल"
+
+msgid "Monsoon"
+msgstr "मानसून"
+
+msgid "Summer"
+msgstr "गर्मी"
+
+msgid "Winter"
+msgstr "सर्दी"
+
+msgid "Income support"
+msgstr "आय सहायता"
+
+msgid "Insurance"
+msgstr "बीमा"
+
+msgid "Credit"
+msgstr "ऋण"
+
+msgid "Subsidy"
+msgstr "सब्सिडी"
+
+msgid "State schemes"
+msgstr "राज्य योजनाएँ"
+
+msgid "State e.g. Maharashtra"
+msgstr "राज्य जैसे महाराष्ट्र"
+
+msgid "Search title or description"
+msgstr "शीर्षक या विवरण खोजें"

@@ -1,0 +1,108 @@
+/* AI Chatbot styles */
+.chat-layout {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.chat-window {
+  height: min(62vh, 520px);
+  overflow-y: auto;
+  padding: 1rem;
+  background: var(--bg-secondary, #f8f9fa);
+  border-radius: 1rem 1rem 0 0;
+  border: 1px solid var(--border-color, #dee2e6);
+  border-bottom: none;
+  scroll-behavior: smooth;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  animation: chatFadeIn 0.35s ease;
+  word-wrap: break-word;
+}
+
+@keyframes chatFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-bubble.user {
+  margin-left: auto;
+  background: #198754;
+  color: #fff;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.chat-bubble.bot {
+  margin-right: auto;
+  background: var(--bg-card, #fff);
+  color: var(--text-primary, #212529);
+  border: 1px solid var(--border-color, #e9ecef);
+  border-bottom-left-radius: 0.25rem;
+}
+
+.chat-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.chat-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.chat-row.user-row {
+  flex-direction: row-reverse;
+}
+
+.chat-input-area {
+  border: 1px solid var(--border-color, #dee2e6);
+  border-radius: 0 0 1rem 1rem;
+  padding: 1rem;
+  background: var(--bg-card, #fff);
+}
+
+.typing-indicator {
+  display: inline-flex;
+  gap: 4px;
+  padding: 0.5rem 0;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background: #198754;
+  border-radius: 50%;
+  animation: typingBounce 1.2s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) { animation-delay: 0.15s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+.quick-chip {
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.chat-image-preview {
+  max-width: 120px;
+  max-height: 80px;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}

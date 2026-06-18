@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Government Schemes" %} — AgroSathi{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 1100px;">
+  <div class="agro-page-header d-flex flex-wrap justify-content-between align-items-center">
+    <h1 class="mb-0"><i class="fas fa-landmark text-success me-2"></i>{% trans "Government Schemes" %}</h1>
+    <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary btn-sm">{% trans "Dashboard" %}</a>
+  </div>
+
+  <div class="card agro-page-card">
+    <div class="card-body">
+      <p class="text-muted">{% trans "National and state farmer schemes with eligibility and application steps." %}</p>
+      <div class="row g-2 mb-3">
+        <div class="col-md-3">
+          <input id="filterState" class="form-control" placeholder="{% trans 'State e.g. Maharashtra' %}">
+        </div>
+        <div class="col-md-3">
+          <select id="filterCategory" class="form-select">
+            <option value="">{% trans "All categories" %}</option>
+            <option value="income_support">{% trans "Income support" %}</option>
+            <option value="insurance">{% trans "Insurance" %}</option>
+            <option value="credit">{% trans "Credit" %}</option>
+            <option value="irrigation">{% trans "Irrigation" %}</option>
+            <option value="soil">{% trans "Soil" %}</option>
+            <option value="subsidy">{% trans "Subsidy" %}</option>
+            <option value="state">{% trans "State schemes" %}</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <input id="filterQ" class="form-control" placeholder="{% trans 'Search title or description' %}">
+        </div>
+        <div class="col-md-2 d-flex gap-2">
+          <button id="btnFilter" type="button" class="btn btn-success w-100">{% trans "Filter" %}</button>
+        </div>
+      </div>
+      <div id="schemesList"><div class="text-muted py-2">{% trans "Loading…" %}</div></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/schemes.js' %}"></script>
+{% endblock %}

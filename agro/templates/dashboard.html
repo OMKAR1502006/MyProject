@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+{% block title %}{% trans "Dashboard" %} — AgroSathi{% endblock %}
+
+{% block extra_css %}
+<style>
+  .widget-loading { opacity: 0.6; }
+  .mini-price { font-size: 0.9rem; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container" data-default-city="{{ profile.district|default:'Pune' }}">
+  {% csrf_token %}
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="fw-bold mb-1">{% trans "Farmer Dashboard" %}</h1>
+      <p class="text-muted mb-0">
+        {% blocktrans with name=user.first_name|default:user.username %}Welcome, {{ name }}{% endblocktrans %}
+        {% if profile.district %} · {{ profile.village }}{% if profile.village %}, {% endif %}{{ profile.district }}{% endif %}
+      </p>
+    </div>
+    <a href="{% url 'profile' %}" class="btn btn-outline-success"><i class="fas fa-user-edit me-1"></i>{% trans "Edit Profile" %}</a>
+  </div>
+
+  <div class="card border-0 shadow-sm mb-4" id="apiStatusCard">
+    <div class="card-body py-3">
+      <h6 class="mb-2"><i class="fas fa-plug text-success me-1"></i>{% trans "Integration status" %}</h6>
+      <div id="apiStatusList" class="d-flex flex-wrap gap-2 small text-muted">{% trans "Checking…" %}</div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="card border-0 shadow-sm text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-wheat-awn fa-2x text-success mb-2"></i>
+          <h3 class="fw-bold mb-0">{{ crop_count }}</h3>
+          <small class="text-muted">{% trans "Crop Advisories" %}</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card border-0 shadow-sm text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-leaf fa-2x text-danger mb-2"></i>
+          <h3 class="fw-bold mb-0">{{ disease_count }}</h3>
+          <small class="text-muted">{% trans "Disease Reports" %}</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card border-0 shadow-sm text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-chart-line fa-2x text-success mb-2"></i>
+          <h3 class="fw-bold mb-0">{{ yield_count }}</h3>
+          <small class="text-muted">{% trans "Yield Forecasts" %}</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card border-0 shadow-sm text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-star fa-2x text-warning mb-2"></i>
+          <h3 class="fw-bold mb-0">{{ favorite_schemes_count }}</h3>
+          <small class="text-muted">{% trans "Saved Schemes" %}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm h-100" id="weatherWidget">
+        <div class="card-body widget-loading">
+          <div class="d-flex justify-content-between">
+            <h6 class="text-primary mb-2"><i class="fas fa-cloud-sun me-1"></i>{% trans "Weather" %}</h6>
+            <a href="{% url 'weather_page' %}" class="small">{% trans "Details" %} →</a>
+          </div>
+          <p id="weatherSummary" class="mb-0 text-muted">{% trans "Loading weather…" %}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm h-100" id="marketWidget">
+        <div class="card-body widget-loading">
+          <div class="d-flex justify-content-between mb-2">
+            <h6 class="text-warning mb-0"><i class="fas fa-store me-1"></i>{% trans "Mandi Prices" %}</h6>
+            <a href="{% url 'market_page' %}" class="small">{% trans "Search" %} →</a>
+          </div>
+          <div id="marketPreview" class="mini-price text-muted">{% trans "Loading…" %}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm h-100" id="yieldForecastWidget">
+        <div class="card-body">
+          <div class="d-flex justify-content-between mb-2">
+            <h6 class="text-success mb-0"><i class="fas fa-chart-line me-1"></i>{% trans "Yield Projections" %}</h6>
+            <a href="{% url 'yield_prediction_page' %}" class="small">{% trans "Forecast" %} →</a>
+          </div>
+          <div id="yieldPreview" class="text-muted small">
+            {% if yield_history %}
+              {% with latest=yield_history.0 %}
+                {% trans "Latest" %}: <strong>{{ latest.crop_type }}</strong>, {% trans "Expected Yield" %}: <strong>{{ latest.expected_yield_tonnes }} t</strong>, {% trans "Profit Margin" %}: <strong>{{ latest.profit_margin_percent }}%</strong>
+              {% endwith %}
+            {% else %}
+              {% trans "No yield predictions calculated yet. Check parameters to generate." %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body">
+          <h6 class="mb-2">{% trans "Activity Overview" %}</h6>
+          <canvas id="activityChart" height="140" aria-label="{% trans 'Activity chart' %}"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-12">
+      <div class="card border-0 shadow-sm h-100" id="schemeEligibilityWidget">
+        <div class="card-body">
+          <div class="d-flex justify-content-between mb-2">
+            <h6 class="text-primary mb-0"><i class="fas fa-tasks me-1"></i>{% trans "Scheme Eligibility" %}</h6>
+            <a href="{% url 'scheme_eligibility_page' %}" class="small">{% trans "Match" %} →</a>
+          </div>
+          <p class="mb-0 text-muted small">
+            {% trans "Find programs matching your category and land holding size." %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4 justify-content-center">
+    <div class="col-6 col-md-4 col-lg-2"><a href="{% url 'disease_detection_page' %}" class="btn btn-outline-danger w-100 py-3"><i class="fas fa-camera d-block mb-1"></i>{% trans "Disease" %}</a></div>
+    <div class="col-6 col-md-4 col-lg-2"><a href="{% url 'soil_analysis_page' %}" class="btn btn-outline-secondary w-100 py-3"><i class="fas fa-vial d-block mb-1"></i>{% trans "Soil" %}</a></div>
+    <div class="col-6 col-md-4 col-lg-2"><a href="{% url 'smart_advisory' %}" class="btn btn-outline-success w-100 py-3"><i class="fas fa-seedling d-block mb-1"></i>{% trans "Advisory" %}</a></div>
+    <div class="col-6 col-md-4 col-lg-2"><a href="{% url 'weather_page' %}" class="btn btn-outline-primary w-100 py-3"><i class="fas fa-cloud d-block mb-1"></i>{% trans "Weather" %}</a></div>
+    <div class="col-6 col-md-4 col-lg-2"><a href="{% url 'market_page' %}" class="btn btn-outline-warning w-100 py-3"><i class="fas fa-store d-block mb-1"></i>{% trans "Mandi" %}</a></div>
+    <div class="col-6 col-md-4 col-lg-2"><a href="{% url 'chatbot_page' %}" class="btn btn-outline-info w-100 py-3"><i class="fas fa-robot d-block mb-1"></i>{% trans "AI Chat" %}</a></div>
+    <div class="col-6 col-md-4 col-lg-2"><a href="{% url 'schemes_page' %}" class="btn btn-outline-success w-100 py-3"><i class="fas fa-landmark d-block mb-1"></i>{% trans "Schemes" %}</a></div>
+    <div class="col-6 col-md-4 col-lg-2"><a href="{% url 'yield_prediction_page' %}" class="btn btn-outline-success w-100 py-3"><i class="fas fa-chart-line d-block mb-1"></i>{% trans "Yield Forecast" %}</a></div>
+    <div class="col-6 col-md-4 col-lg-2"><a href="{% url 'scheme_eligibility_page' %}" class="btn btn-outline-primary w-100 py-3"><i class="fas fa-tasks d-block mb-1"></i>{% trans "Eligible Schemes" %}</a></div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-header bg-white"><h5 class="mb-0">{% trans "Recent Crop History" %}</h5></div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-sm table-hover mb-0">
+              <thead class="table-light">
+                <tr><th>{% trans "Crop" %}</th><th>{% trans "Soil" %}</th><th>{% trans "Prob." %}</th><th>{% trans "Date" %}</th></tr>
+              </thead>
+              <tbody>
+                {% for c in crop_history %}
+                <tr>
+                  <td>{{ c.crop }}</td>
+                  <td>{{ c.soil_type }}</td>
+                  <td>{{ c.probability|floatformat:0 }}%</td>
+                  <td>{{ c.created_at|date:"d M" }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4" class="text-center text-muted py-4">{% trans "No records yet" %}</td></tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-header bg-white"><h5 class="mb-0">{% trans "Recent Disease Reports" %}</h5></div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-sm table-hover mb-0">
+              <thead class="table-light">
+                <tr><th>{% trans "Disease" %}</th><th>{% trans "Confidence" %}</th><th>{% trans "Date" %}</th></tr>
+              </thead>
+              <tbody>
+                {% for d in disease_reports %}
+                <tr>
+                  <td>{{ d.disease }}</td>
+                  <td>{{ d.confidence|floatformat:0 }}%</td>
+                  <td>{{ d.created_at|date:"d M" }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="3" class="text-center text-muted py-4">{% trans "No reports yet" %}</td></tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+<script>
+  window.AGRO_DASHBOARD = {
+    cropCount: {{ crop_count }},
+    diseaseCount: {{ disease_count }},
+  };
+</script>
+{% endblock %}

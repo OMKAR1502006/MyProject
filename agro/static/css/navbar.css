@@ -1,0 +1,405 @@
+/**
+ * AgroSathi — Premium Navbar CSS v3
+ * agro/static/css/navbar.css
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap');
+
+:root {
+  --nav-h: 70px;
+  --green-1: #052e16;
+  --green-2: #14532d;
+  --green-3: #16a34a;
+  --green-4: #22c55e;
+  --green-5: #86efac;
+  --green-6: #bbf7d0;
+  --fast: 0.16s cubic-bezier(.4,0,.2,1);
+  --med:  0.26s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Reset & Body ── */
+body.agro-app {
+  overflow-x: hidden;
+  padding-top: 0;
+  font-family: 'Plus Jakarta Sans','Noto Sans Devanagari','Noto Sans Telugu',
+               'Noto Sans Kannada', system-ui, sans-serif;
+}
+
+/* ══════════════════════════════════════════════
+   NAVBAR SHELL
+══════════════════════════════════════════════ */
+.agro-navbar {
+  background: linear-gradient(90deg, #052e16 0%, #0f3d20 40%, #0a3318 100%) !important;
+  border-bottom: 1px solid rgba(34,197,94,0.2);
+  min-height: var(--nav-h);
+  padding: 0 !important;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  box-shadow:
+    0 1px 0 rgba(34,197,94,0.15),
+    0 4px 24px rgba(0,0,0,0.4);
+  transition: background var(--med), box-shadow var(--med);
+}
+
+/* Green shimmer line at the very top */
+.agro-navbar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--green-4) 20%,
+    var(--green-5) 50%,
+    var(--green-4) 80%,
+    transparent 100%);
+  pointer-events: none;
+}
+
+.agro-navbar.agro-scrolled {
+  background: linear-gradient(90deg,#021a0d 0%,#083320 100%) !important;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.55) !important;
+}
+
+.agro-nav-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  min-height: var(--nav-h);
+  display: flex;
+  align-items: center;
+}
+
+/* ══════════════════════════════════════════════
+   BRAND
+══════════════════════════════════════════════ */
+.navbar-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+  text-decoration: none !important;
+  flex-shrink: 0;
+  padding: 0 !important;
+  margin-right: 1.5rem !important;
+}
+
+.agro-brand-icon-wrap {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--green-3) 0%, var(--green-4) 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 11px;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(34,197,94,0), 0 3px 10px rgba(34,197,94,0.35);
+  transition: transform var(--fast), box-shadow var(--med);
+}
+
+.navbar-brand:hover .agro-brand-icon-wrap {
+  transform: scale(1.08) rotate(-4deg);
+  box-shadow: 0 0 0 5px rgba(34,197,94,0.2), 0 3px 14px rgba(34,197,94,0.4);
+}
+
+.agro-brand-icon-wrap i {
+  color: #fff;
+  font-size: 20px;
+}
+
+.agro-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.agro-brand-name {
+  font-family: 'Sora', system-ui, sans-serif;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+
+.agro-brand-sub {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--green-5);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-top: 1px;
+}
+
+/* ══════════════════════════════════════════════
+   NAV LINKS
+══════════════════════════════════════════════ */
+.agro-nav-links {
+  gap: 1px !important;
+  align-items: center;
+  flex-wrap: nowrap !important;
+}
+
+/* Each link: icon on top, label below */
+.agro-nav-links .nav-link {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 2px !important;
+  padding: 8px 13px !important;
+  border-radius: 10px;
+  color: rgba(255,255,255,0.65) !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  line-height: 1;
+  position: relative;
+  transition: color var(--fast), background var(--fast), transform var(--fast) !important;
+}
+
+.agro-nav-links .nav-link::after { display: none !important; }
+
+.agro-nav-links .nav-link i {
+  font-size: 17px !important;
+  display: block;
+  transition: transform var(--fast);
+}
+
+/* Hover */
+.agro-nav-links .nav-link:hover {
+  color: #fff !important;
+  background: rgba(255,255,255,0.08) !important;
+  transform: translateY(-1px);
+}
+.agro-nav-links .nav-link:hover i { transform: scale(1.2); }
+
+/* Active pill */
+.agro-nav-links .nav-link.active {
+  color: #fff !important;
+  background: rgba(34,197,94,0.18) !important;
+  box-shadow: inset 0 0 0 1px rgba(34,197,94,0.4) !important;
+}
+
+.agro-nav-links .nav-link.active i {
+  color: var(--green-4) !important;
+  filter: drop-shadow(0 0 5px rgba(34,197,94,0.6));
+}
+
+/* Active glowing dot */
+.agro-nav-links .nav-link.active::before {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 2.5px;
+  background: var(--green-4);
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--green-4);
+}
+
+/* ══════════════════════════════════════════════
+   TOGGLER
+══════════════════════════════════════════════ */
+.navbar-toggler {
+  border: 1.5px solid rgba(255,255,255,0.35) !important;
+  border-radius: 10px !important;
+  padding: 7px 10px !important;
+  transition: all var(--fast) !important;
+}
+.navbar-toggler:hover {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.6) !important;
+}
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.35) !important;
+}
+
+/* ══════════════════════════════════════════════
+   RIGHT ACTIONS
+══════════════════════════════════════════════ */
+.agro-nav-actions {
+  gap: 8px !important;
+  flex-shrink: 0;
+}
+
+/* Language select */
+.lang-select {
+  background: rgba(255,255,255,0.07) !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  color: rgba(255,255,255,0.9) !important;
+  border-radius: 9px !important;
+  padding: 6px 10px !important;
+  font-size: 12px !important;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 105px;
+  min-height: 36px;
+  transition: all var(--fast);
+}
+.lang-select:hover, .lang-select:focus {
+  background: rgba(34,197,94,0.15) !important;
+  border-color: rgba(34,197,94,0.5) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.lang-select option { background: #052e16; color: #fff; }
+
+/* Profile button */
+.agro-profile-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  border-radius: 50px !important;
+  color: #fff !important;
+  padding: 5px 14px 5px 5px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  white-space: nowrap;
+  transition: all var(--fast) !important;
+}
+.agro-profile-btn:hover, .agro-profile-btn:focus {
+  background: rgba(34,197,94,0.18) !important;
+  border-color: rgba(34,197,94,0.5) !important;
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.12) !important;
+  color: #fff !important;
+}
+.agro-profile-btn::after {
+  border-color: rgba(255,255,255,0.5) !important;
+  margin-left: 2px !important;
+}
+
+/* Avatar circle */
+.agro-avatar {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-4), var(--green-3));
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800;
+  color: #fff;
+  letter-spacing: 0;
+  flex-shrink: 0;
+  border: 1.5px solid rgba(255,255,255,0.3);
+}
+
+/* Dropdown menu */
+.agro-profile-menu {
+  border: 1px solid rgba(0,0,0,0.1) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.2) !important;
+  padding: 6px !important;
+  min-width: 190px !important;
+  margin-top: 8px !important;
+  animation: dropIn .16s ease;
+  overflow: hidden;
+}
+@keyframes dropIn {
+  from { opacity:0; transform: translateY(-8px) scale(.97); }
+  to   { opacity:1; transform: translateY(0) scale(1); }
+}
+.agro-profile-menu .dropdown-item {
+  border-radius: 9px !important;
+  padding: 10px 14px !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px;
+  transition: background var(--fast) !important;
+}
+.agro-profile-menu .dropdown-item:hover { background: #f0fdf4 !important; color: #166534 !important; }
+.agro-profile-menu .dropdown-item.text-danger:hover { background: #fef2f2 !important; color: #dc2626 !important; }
+.agro-profile-menu .dropdown-item i { width: 16px; text-align: center; }
+.agro-profile-menu .dropdown-divider { margin: 4px 0 !important; border-color: rgba(0,0,0,0.07) !important; }
+
+/* Login / Register buttons */
+.agro-nav-actions .btn-outline-light {
+  border: 1.5px solid rgba(255,255,255,0.4) !important;
+  border-radius: 9px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  padding: 7px 18px !important;
+  color: #fff !important;
+  background: transparent !important;
+  transition: all var(--fast) !important;
+}
+.agro-nav-actions .btn-outline-light:hover {
+  background: rgba(255,255,255,0.12) !important;
+  border-color: rgba(255,255,255,0.7) !important;
+}
+.agro-nav-actions .btn-light {
+  border-radius: 9px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  padding: 7px 18px !important;
+  background: var(--green-4) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 2px 14px rgba(34,197,94,0.4) !important;
+  transition: all var(--fast) !important;
+}
+.agro-nav-actions .btn-light:hover {
+  background: var(--green-3) !important;
+  box-shadow: 0 4px 20px rgba(34,197,94,0.55) !important;
+  transform: translateY(-1px);
+}
+
+/* ══════════════════════════════════════════════
+   MOBILE  < 1200px
+══════════════════════════════════════════════ */
+@media (max-width: 1199.98px) {
+  #navMenu {
+    background: linear-gradient(180deg, #052e16 0%, #073d1c 100%);
+    border-top: 1px solid rgba(34,197,94,0.15);
+    border-radius: 0 0 18px 18px;
+    padding: 1rem 1rem 1.25rem;
+    margin-top: 4px;
+    max-height: min(82vh, calc(100dvh - 5rem));
+    overflow-y: auto;
+  }
+  .agro-nav-links {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+    margin-bottom: 1rem !important;
+  }
+  .agro-nav-links .nav-link {
+    flex-direction: row !important;
+    gap: 8px !important;
+    font-size: 13px !important;
+    padding: 10px 14px !important;
+  }
+  .agro-nav-links .nav-link.active::before { display: none; }
+  .agro-nav-actions {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 12px;
+    width: 100%;
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  .agro-nav-actions .lang-select,
+  .agro-nav-actions .btn,
+  .agro-nav-actions .dropdown { width: 100%; }
+  .agro-profile-btn { width: 100%; justify-content: center; }
+}
+
+/* ══════════════════════════════════════════════
+   DESKTOP  ≥ 1200px
+══════════════════════════════════════════════ */
+@media (min-width: 1200px) {
+  .agro-navbar .navbar-collapse { align-items: center; }
+  .agro-nav-links { gap: 1px !important; }
+  .agro-nav-actions {
+    flex-shrink: 0;
+    align-items: center !important;
+    flex-direction: row !important;
+    margin-left: auto !important;
+  }
+}

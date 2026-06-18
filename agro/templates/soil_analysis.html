@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Soil Analysis" %} — AgroSathi{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 960px;">
+  <div class="agro-page-header d-flex flex-wrap justify-content-between align-items-center">
+    <h1 class="mb-0"><i class="fas fa-vial text-success me-2"></i>{% trans "Soil Analysis" %}</h1>
+    <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary btn-sm">{% trans "Dashboard" %}</a>
+  </div>
+
+  <div class="card agro-page-card">
+    <div class="card-body">
+      {% csrf_token %}
+      <p class="text-muted">{% trans "Enter N, P, K, pH and optional moisture for fertility analysis." %}</p>
+      <form id="soilForm" class="row g-3">
+        <div class="col-md-3">
+          <label class="form-label" for="n">{% trans "Nitrogen" %} (N)</label>
+          <input type="number" step="any" id="n" class="form-control" value="35" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="p">{% trans "Phosphorus" %} (P)</label>
+          <input type="number" step="any" id="p" class="form-control" value="12" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="k">{% trans "Potassium" %} (K)</label>
+          <input type="number" step="any" id="k" class="form-control" value="90" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="ph">pH</label>
+          <input type="number" step="0.1" id="ph" class="form-control" value="6.5" required>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label" for="soilType">{% trans "Soil Type" %}</label>
+          <select id="soilType" class="form-select" required>
+            <option value="loamy">{% trans "Loamy" %}</option>
+            <option value="clayey">{% trans "Clayey" %}</option>
+            <option value="sandy">{% trans "Sandy" %}</option>
+            <option value="black">{% trans "Black" %}</option>
+            <option value="red">{% trans "Red" %}</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label" for="cropType">{% trans "Crop" %}</label>
+          <select id="cropType" class="form-select" required>
+            <option value="wheat">Wheat</option>
+            <option value="rice">Rice</option>
+            <option value="cotton">Cotton</option>
+            <option value="sugarcane">Sugarcane</option>
+            <option value="maize">Maize</option>
+            <option value="soybean">Soybean</option>
+            <option value="onion">Onion</option>
+            <option value="tomato">Tomato</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label" for="moisture">{% trans "Moisture" %} (%)</label>
+          <input type="number" id="moisture" class="form-control" value="30">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label" for="area">{% trans "Area" %} (ha)</label>
+          <input type="number" id="area" class="form-control" value="1" min="0.1" step="0.1">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label" for="units">{% trans "Units" %}</label>
+          <select id="units" class="form-select">
+            <option value="ppm">ppm</option>
+            <option value="kg/ha">kg/ha</option>
+          </select>
+        </div>
+        <div class="col-12 d-flex flex-wrap gap-2 align-items-center">
+          <button type="button" class="btn btn-success btn-lg" id="analyzeBtn">
+            <i class="fas fa-flask me-1"></i>{% trans "Analyze Soil" %}
+          </button>
+          <button type="reset" class="btn btn-outline-secondary" id="resetBtn">{% trans "Reset" %}</button>
+          <span id="soilStatus" class="text-muted small ms-auto"></span>
+        </div>
+      </form>
+
+      <div id="results" class="mt-4 pt-3 border-top" style="display:none;">
+        <h5 class="text-success fw-bold">{% trans "Results" %}</h5>
+        <div id="healthCard" class="alert alert-light border mb-3"></div>
+        <p><strong>{% trans "Fertility" %}:</strong> <span id="resClass" class="fw-semibold">—</span></p>
+        <p class="small text-muted" id="resOptimal"></p>
+        <h6 class="fw-semibold">{% trans "Probabilities" %}</h6>
+        <ul id="resProbs" class="mb-3"></ul>
+        <h6 class="fw-semibold">{% trans "Fertilizer suggestions" %}</h6>
+        <ul id="resSuggestions" class="mb-2"></ul>
+        <p id="resPhAdvice" class="text-muted small mb-0"></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/soil.js' %}"></script>
+{% endblock %}

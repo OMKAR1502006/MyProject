@@ -1,0 +1,19 @@
+/* Light theme CSS variables for AgroSathi */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-card: #ffffff;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --nav-bg: #198754;
+  --nav-text: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #ced4da;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body.agro-app {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}

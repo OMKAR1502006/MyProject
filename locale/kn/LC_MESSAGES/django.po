@@ -1,0 +1,340 @@
+msgid ""
+msgstr ""
+"Language: kn\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Home"
+msgstr "ಮುಖಪುಟ"
+
+msgid "Dashboard"
+msgstr "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್"
+
+msgid "Weather"
+msgstr "ಹವಾಮಾನ"
+
+msgid "Mandi"
+msgstr "ಮಂಡಿ"
+
+msgid "Mandi Prices"
+msgstr "ಮಂಡಿ ಬೆಲೆಗಳು"
+
+msgid "Market Prices"
+msgstr "ಮಂಡಿ ಬೆಲೆಗಳು"
+
+msgid "Disease"
+msgstr "ರೋಗ"
+
+msgid "Disease Detection"
+msgstr "ರೋಗ ಪತ್ತೆ"
+
+msgid "Soil"
+msgstr "ಮಣ್ಣು"
+
+msgid "Soil Analysis"
+msgstr "ಮಣ್ಣಿನ ವಿಶ್ಲೇಷಣೆ"
+
+msgid "AI Chat"
+msgstr "AI ಚಾಟ್"
+
+msgid "Chatbot"
+msgstr "ಚಾಟ್‌ಬಾಟ್"
+
+msgid "Advisory"
+msgstr "ಸಲಹೆ"
+
+msgid "Schemes"
+msgstr "ಯೋಜನೆಗಳು"
+
+msgid "Profile"
+msgstr "ಪ್ರೊಫೈಲ್"
+
+msgid "Login"
+msgstr "ಲಾಗಿನ್"
+
+msgid "Logout"
+msgstr "ಲಾಗ್‌ಔಟ್"
+
+msgid "Register"
+msgstr "ನೋಂದಣಿ"
+
+msgid "Language"
+msgstr "ಭಾಷೆ"
+
+msgid "Kannada"
+msgstr "ಕನ್ನಡ"
+
+msgid "English"
+msgstr "ಇಂಗ್ಲೀಷ್"
+
+msgid "Hindi"
+msgstr "ಹಿಂದಿ"
+
+msgid "Marathi"
+msgstr "ಮರಾಠಿ"
+
+msgid "Telugu"
+msgstr "ತೆಲುಗು"
+
+msgid "Farmer Dashboard"
+msgstr "ರೈತ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್"
+
+msgid "Edit Profile"
+msgstr "ಪ್ರೊಫೈಲ್ ಸಂಪಾದಿಸಿ"
+
+msgid "Integration status"
+msgstr "ಸೇವಾ ಸ್ಥಿತಿ"
+
+msgid "Checking…"
+msgstr "ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ…"
+
+msgid "Crop Advisories"
+msgstr "ಬೆಳೆ ಸಲಹೆಗಳು"
+
+msgid "Disease Reports"
+msgstr "ರೋಗ ವರದಿಗಳು"
+
+msgid "Details"
+msgstr "ವಿವರಗಳು"
+
+msgid "Search"
+msgstr "ಹುಡುಕಿ"
+
+msgid "Activity Overview"
+msgstr "ಚಟುವಟಿಕೆ ಅವಲೋಕನ"
+
+msgid "Recent Crop History"
+msgstr "ಇತ್ತೀಚಿನ ಬೆಳೆ ಇತಿಹಾಸ"
+
+msgid "Recent Disease Reports"
+msgstr "ಇತ್ತೀಚಿನ ರೋಗ ವರದಿಗಳು"
+
+msgid "No records yet"
+msgstr "ಇನ್ನೂ ದಾಖಲೆಗಳಿಲ್ಲ"
+
+msgid "No reports yet"
+msgstr "ಇನ್ನೂ ವರದಿಗಳಿಲ್ಲ"
+
+msgid "Crop"
+msgstr "ಬೆಳೆ"
+
+msgid "Date"
+msgstr "ದಿನಾಂಕ"
+
+msgid "Prob."
+msgstr "ಸಾಧ್ಯತೆ"
+
+msgid "Confidence"
+msgstr "ವಿಶ್ವಾಸ"
+
+msgid "Weather Forecast"
+msgstr "ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ"
+
+msgid "Live weather for your farm"
+msgstr "ನಿಮ್ಮ ಕೃಷಿ ಭೂಮಿಗೆ ಲೈವ್ ಹವಾಮಾನ"
+
+msgid "City name"
+msgstr "ನಗರದ ಹೆಸರು"
+
+msgid "Get Weather"
+msgstr "ಹವಾಮಾನ ನೋಡಿ"
+
+msgid "My Location"
+msgstr "ನನ್ನ ಸ್ಥಳ"
+
+msgid "Fetching live weather data…"
+msgstr "ಲೈವ್ ಹವಾಮಾನ ಡೇಟಾ ಲೋಡ್ ಆಗುತ್ತಿದೆ…"
+
+msgid "Live Mandi Prices"
+msgstr "ಲೈವ್ ಮಂಡಿ ಬೆಲೆಗಳು"
+
+msgid "Search by crop, state and mandi"
+msgstr "ಬೆಳೆ, ರಾಜ್ಯ ಮತ್ತು ಮಂಡಿಯಿಂದ ಹುಡುಕಿ"
+
+msgid "Farming AI Assistant"
+msgstr "ಕೃಷಿ AI ಸಹಾಯಕ"
+
+msgid "Send"
+msgstr "ಕಳುಹಿಸಿ"
+
+msgid "Ask Again"
+msgstr "ಮತ್ತೆ ಕೇಳಿ"
+
+msgid "Read aloud"
+msgstr "ಜೋರಾಗಿ ಓದಿ"
+
+msgid "Clear screen"
+msgstr "ಪರದೆ ತೆರವು"
+
+msgid "Smart Crop Advisory"
+msgstr "ಸ್ಮಾರ್ಟ್ ಬೆಳೆ ಸಲಹೆ"
+
+msgid "Get Recommendations"
+msgstr "ಶಿಫಾರಸುಗಳನ್ನು ಪಡೆಯಿರಿ"
+
+msgid "Analyze Soil"
+msgstr "ಮಣ್ಣನ್ನು ವಿಶ್ಲೇಷಿಸಿ"
+
+msgid "Analyze Image"
+msgstr "ಚಿತ್ರ ವಿಶ್ಲೇಷಿಸಿ"
+
+msgid "Select Photo"
+msgstr "ಫೋಟೋ ಆಯ್ಕೆಮಾಡಿ"
+
+msgid "Reset"
+msgstr "ಮರುಹೊಂದಿಸಿ"
+
+msgid "Government Schemes"
+msgstr "ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು"
+
+msgid "Filter"
+msgstr "ಫಿಲ್ಟರ್"
+
+msgid "Loading…"
+msgstr "ಲೋಡ್ ಆಗುತ್ತಿದೆ…"
+
+msgid "All categories"
+msgstr "ಎಲ್ಲಾ ವರ್ಗಗಳು"
+
+msgid "Go to Dashboard"
+msgstr "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಹೋಗಿ"
+
+msgid "Register as Farmer"
+msgstr "ರೈತರಾಗಿ ನೋಂದಣಿ"
+
+msgid "Register Free"
+msgstr "ಉಚಿತ ನೋಂದಣಿ"
+
+msgid "Open Dashboard"
+msgstr "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ತೆರೆಯಿರಿ"
+
+msgid "Platform Features"
+msgstr "ವೇದಿಕೆ ವೈಶಿಷ್ಟ್ಯಗಳು"
+
+msgid "Main navigation"
+msgstr "ಮುಖ್ಯ ನ್ಯಾವಿಗೇಷನ್"
+
+msgid "Toggle navigation"
+msgstr "ಮೆನು"
+
+msgid "Close"
+msgstr "ಮುಚ್ಚಿ"
+
+msgid "Quick Links"
+msgstr "ತ್ವರಿತ ಲಿಂಕ್‌ಗಳು"
+
+msgid "Contact"
+msgstr "ಸಂಪರ್ಕ"
+
+msgid "AI-Powered Agriculture for Indian Farmers"
+msgstr "ಭಾರತೀಯ ರೈತರಿಗೆ AI ಕೃಷಿ"
+
+msgid "Grow Smarter with AgroSathi"
+msgstr "AgroSathi ಜೊತೆ ಸ್ಮಾರ್ಟ್ ಕೃಷಿ"
+
+msgid "Open"
+msgstr "ತೆರೆಯಿರಿ"
+
+msgid "Select"
+msgstr "ಆಯ್ಕೆಮಾಡಿ"
+
+msgid "Soil Type"
+msgstr "ಮಣ್ಣಿನ ಪ್ರಕಾರ"
+
+msgid "Season"
+msgstr "ಋತು"
+
+msgid "Temperature"
+msgstr "ತಾಪಮಾನ"
+
+msgid "Rainfall"
+msgstr "ಮಳೆ"
+
+msgid "Moisture"
+msgstr "ತೇವಾಂಶ"
+
+msgid "Area"
+msgstr "ವಿಸ್ತೀರ್ಣ"
+
+msgid "Units"
+msgstr "ಘಟಕಗಳು"
+
+msgid "Results"
+msgstr "ಫಲಿತಾಂಶಗಳು"
+
+msgid "Fertility"
+msgstr "ಫಲವತ್ತತೆ"
+
+msgid "Enter N, P, K, pH and optional moisture for fertility analysis."
+msgstr "ಫಲವತ್ತತೆಗೆ N, P, K, pH ನಮೂದಿಸಿ."
+
+msgid "Enter soil and climate details for crop recommendations."
+msgstr "ಬೆಳೆ ಶಿಫಾರಸಿಗೆ ಮಣ್ಣು ಮತ್ತು ಹವಾಮಾನ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ."
+
+msgid "National and state farmer schemes with eligibility and application steps."
+msgstr "ಅರ್ಹತೆ ಮತ್ತು ಅರ್ಜಿ ಹಂತಗಳೊಂದಿಗೆ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು."
+
+msgid "Live mandi data requires API key."
+msgstr "ಲೈವ್ ಮಂಡಿ ಡೇಟಾಕ್ಕೆ API ಕೀ ಅಗತ್ಯ."
+
+msgid "Welcome, %(name)s"
+msgstr "ಸ್ವಾಗತ, %(name)s"
+
+msgid "Nitrogen"
+msgstr "ಸಾರಜನಿಕ"
+
+msgid "Phosphorus"
+msgstr "ರಂಜಕ"
+
+msgid "Potassium"
+msgstr "ಪೊಟಾಷಿಯಂ"
+
+msgid "Probabilities"
+msgstr "ಸಾಧ್ಯತೆಗಳು"
+
+msgid "Fertilizer suggestions"
+msgstr "ರಸಗೊಬ್ಬರ ಸಲಹೆ"
+
+msgid "Loamy"
+msgstr "ಲೋಮಿ"
+
+msgid "Clayey"
+msgstr "ಕ್ಲೇ"
+
+msgid "Sandy"
+msgstr "ಮರಳು"
+
+msgid "Black"
+msgstr "ಕಪ್ಪು"
+
+msgid "Red"
+msgstr "ಕೆಂಪು"
+
+msgid "Monsoon"
+msgstr "ಮಳೆಗಾಲ"
+
+msgid "Summer"
+msgstr "ಬೇಸಿಗೆ"
+
+msgid "Winter"
+msgstr "ಚಳಿಗಾಲ"
+
+msgid "Income support"
+msgstr "ಆದಾಯ ಬೆಂಬಲ"
+
+msgid "Insurance"
+msgstr "ವಿಮೆ"
+
+msgid "Credit"
+msgstr "ಸಾಲ"
+
+msgid "Subsidy"
+msgstr "ಸಬ್ಸಿಡಿ"
+
+msgid "State schemes"
+msgstr "ರಾಜ್ಯ ಯೋಜನೆಗಳು"
+
+msgid "State e.g. Maharashtra"
+msgstr "ರಾಜ್ಯ ಉದಾ. ಮಹಾರಾಷ್ಟ್ರ"
+
+msgid "Search title or description"
+msgstr "ಶೀರ್ಷಿಕೆ ಅಥವಾ ವಿವರ ಹುಡುಕಿ"
