@@ -198,4 +198,4 @@ Visit `http://127.0.0.1:8000/`.
 
 AgroSathiDjango is built to deliver resilient, AI-enhanced farming support with a modern developer-friendly codebase.
 
-*Note: This repository is fully optimized, clean, and free of unnecessary virtual environments or large files.*
+contributor -pramod,omkar,prem
